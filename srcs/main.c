@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 17:50:22 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/11/30 03:28:51 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/11/30 03:54:00 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_free_stack(t_stack **stack)
 	free(*stack);
 }
 
-void	ft_free(char **args)
+void	ft_free_args(char **args)
 {
 	int	i;
 
@@ -44,28 +44,34 @@ void	ft_free(char **args)
 	free(args);
 }
 
+void	ft_put_stack(t_stack *stack_a)
+{
+	t_stack	*tmp;
+
+	tmp = stack_a;
+	printf("Stack a :\n");
+	while (1)
+	{
+		printf("%i\n", stack_a->number);
+		stack_a = stack_a->next;
+		if (stack_a == tmp)
+			break ;
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
 
 	stack_a = NULL;
 	if (ac < 2)
-	return (1);
+		return (1);
 	if (ft_init_stack(&stack_a, ac, av))
 		return (ft_error(), 1);
 
 	//algo
 
-	t_stack	*tmp;
-	tmp = stack_a->prev;
-	printf("Stack a :\n");
-	while (stack_a != tmp)
-	{
-		printf("%i\n", stack_a->number);
-		stack_a = stack_a->next;
-	}
-	printf("%i\n", stack_a->number);
-
+	ft_put_stack(stack_a);
 	ft_free_stack(&stack_a);
 	return (0);
 }

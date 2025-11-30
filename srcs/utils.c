@@ -6,13 +6,13 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 03:11:42 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/11/30 03:16:22 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/11/30 03:46:26 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_isspace(char c)
+static int	ft_isspace(char c)
 {
 	if ((c > 8 && c < 14) || c == 32)
 		return (1);

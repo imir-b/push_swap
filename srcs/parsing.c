@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 17:50:34 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/11/30 03:34:59 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/11/30 03:54:34 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	ft_check_args(char **args)
 		j = 0;
 		if ((args[i][j] == '-' || args[i][j] == '+') && \
 			!ft_isdigit((int)args[i][j + 1]))
-			return (ft_error(), 1);
+			return (1);
 		if (args[i][j] == '-' || args[i][j] == '+')
 			j++;
 		while (args[i][j])
 		{
 			if (!ft_isdigit((int)args[i][j]))
-				return (ft_error(), 1);
+				return (1);
 			j++;
 		}
 		i++;
@@ -66,16 +66,15 @@ int	ft_parsing(t_stack **stack_a, char **args)
 	long	nb;
 
 	nb = 0;
-	if (!ft_check_args(args))
+	if (ft_check_args(args))
+		return (1);
+	while (*args)
 	{
-		while (*args)
-		{
-			nb = ft_atol(*args);
-			if (nb > INT_MAX || nb < INT_MIN)
-				return (ft_error(), 1);
-			ft_stackaddback(stack_a, ft_stacknew((int)nb));
-			args++;
-		}
+		nb = ft_atol(*args);
+		if (nb > INT_MAX || nb < INT_MIN)
+			return (1);
+		ft_stackaddback(stack_a, ft_stacknew((int)nb));
+		args++;
 	}
 	return (0);
 }
@@ -92,8 +91,8 @@ int	ft_init_stack(t_stack **stack_a, int ac, char **av)
 		if (!args)
 			return (1);
 		if (ft_parsing(stack_a, args))
-			return (ft_free_stack(stack_a), ft_free(args), 1);
-		ft_free(args);
+			return (ft_free_stack(stack_a), ft_free_args(args), 1);
+		ft_free_args(args);
 		i++;
 	}
 	if (ft_check_duplicate(*stack_a))

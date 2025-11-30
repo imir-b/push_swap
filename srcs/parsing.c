@@ -1,34 +1,102 @@
-int	ft_isspace(char c)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/28 17:50:34 by vbleskin          #+#    #+#             */
+/*   Updated: 2025/11/30 03:34:59 by vbleskin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+int	ft_check_args(char **args)
 {
-	if (c > 8 && c < 14 || c == 32)
-		return(1);
-	else
+	int	i;
+	int	j;
+
+	i = 0;
+	while (args[i])
+	{
+		j = 0;
+		if ((args[i][j] == '-' || args[i][j] == '+') && \
+			!ft_isdigit((int)args[i][j + 1]))
+			return (ft_error(), 1);
+		if (args[i][j] == '-' || args[i][j] == '+')
+			j++;
+		while (args[i][j])
+		{
+			if (!ft_isdigit((int)args[i][j]))
+				return (ft_error(), 1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	ft_check_duplicate(t_stack *stack_a)
+{
+	t_stack	*runner;
+	t_stack	*current;
+
+	if (!stack_a)
 		return (0);
+	current = stack_a;
+	while (1)
+	{
+		runner = current->next;
+		while (runner != current)
+		{
+			if (runner->number == current->number)
+				return (1);
+			runner = runner->next;
+		}
+		current = current->next;
+		if (current == stack_a)
+			break ;
+	}
+	return (0);
 }
 
-long int	ft_atol(char *nb)
+int	ft_parsing(t_stack **stack_a, char **args)
 {
-	int	neg;
-	int	n;
+	long	nb;
 
-	neg = 1;
-	while (ft_isspace(*nb))
-		nb++;
-	if (*nb == '-' || *nb == '+')
+	nb = 0;
+	if (!ft_check_args(args))
 	{
-		if(*nb == '-')
-			neg = -1;
-		nb++;
+		while (*args)
+		{
+			nb = ft_atol(*args);
+			if (nb > INT_MAX || nb < INT_MIN)
+				return (ft_error(), 1);
+			ft_stackaddback(stack_a, ft_stacknew((int)nb));
+			args++;
+		}
 	}
-	while (*nb >= '0' && *nb <= '9')
-	{
-		n = n * 10 + (*nb - 48); 
-		nb++;
-	}
-	return (neg * n);
+	return (0);
 }
 
-void	ft_parsing()
+int	ft_init_stack(t_stack **stack_a, int ac, char **av)
 {
+	char	**args;
+	int		i;
 
+	i = 1;
+	while (i < ac)
+	{
+		args = ft_split(av[i], ' ');
+		if (!args)
+			return (1);
+		if (ft_parsing(stack_a, args))
+			return (ft_free_stack(stack_a), ft_free(args), 1);
+		ft_free(args);
+		i++;
+	}
+	if (ft_check_duplicate(*stack_a))
+		return (ft_free_stack(stack_a), 1);
+	return (0);
 }

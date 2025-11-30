@@ -1,44 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/30 03:11:42 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/11/30 04:07:09 by vbleskin         ###   ########.fr       */
+/*   Created: 2025/11/30 04:04:57 by vbleskin          #+#    #+#             */
+/*   Updated: 2025/11/30 04:05:08 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_isspace(char c)
+void	ft_error(void)
 {
-	if ((c > 8 && c < 14) || c == 32)
-		return (1);
-	else
-		return (0);
+	ft_putstr_fd("Error\n", 2);
 }
 
-long int	ft_atol(char *nb)
+void	ft_free_stack(t_stack **stack)
 {
-	int			neg;
-	long int	n;
+	t_stack	*end;
 
-	neg = 1;
-	n = 0;
-	while (ft_isspace(*nb))
-		nb++;
-	if (*nb == '-' || *nb == '+')
+	end = (*stack)->prev;
+	while (*stack != end)
 	{
-		if (*nb == '-')
-			neg = -1;
-		nb++;
+		free(*stack);
+		*stack = (*stack)->next;
 	}
-	while (*nb >= '0' && *nb <= '9')
+	free(*stack);
+}
+
+void	ft_free_split(char **args)
+{
+	int	i;
+
+	if (!args)
+		return ;
+	while (args[i])
 	{
-		n = n * 10 + *nb - '0';
-		nb++;
+		free(args[i]);
+		i++;
 	}
-	return (neg * n);
+	free(args);
 }

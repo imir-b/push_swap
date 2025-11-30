@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 17:50:34 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/11/30 03:54:34 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/11/30 04:05:44 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ int	ft_init_stack(t_stack **stack_a, int ac, char **av)
 		if (!args)
 			return (1);
 		if (ft_parsing(stack_a, args))
-			return (ft_free_stack(stack_a), ft_free_args(args), 1);
-		ft_free_args(args);
+			return (ft_free_stack(stack_a), ft_free_split(args), 1);
+		ft_free_split(args);
 		i++;
 	}
 	if (ft_check_duplicate(*stack_a))

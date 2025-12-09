@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 17:51:54 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/09 14:27:33 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/12/09 21:25:04 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,33 @@
 
 static void	ft_push(t_stack **dest, t_stack **src)
 {
-	int	tmp;
+	t_stack	*tmp;
 
+	if (!src || !*src)
+		return ;
+	tmp = *src;
+	if ((*src)->next != *src)
+	{
+		*src = (*src)->next;
+		tmp->prev->next = *src;
+		(*src)->prev = tmp->prev;
+	}
+	else
+		*src = NULL;
 	if (!*dest)
-		
-	tmp = (*src)->number;
-	(*src)->number = (*dest)->number;
-	(*dest)->number = tmp;
+	{
+		*dest = tmp;
+		tmp->next = tmp;
+		tmp->prev = tmp;
+	}
+	else
+	{
+		tmp->next = *dest;
+		tmp->prev = (*dest)->prev;
+		*dest = tmp;
+		(*dest)->next->prev = tmp;
+		(*dest)->prev->next = tmp;
+	}
 }
 
 void	pa(t_stack **a, t_stack **b)

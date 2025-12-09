@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 17:52:02 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/11/30 04:33:40 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/12/09 01:08:54 by vlad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	ft_rotate(t_stack **stack)
 {
-	
+	if (!stack || !*stack || (*stack)->next == *stack)
+		return ;
+	*stack = (*stack)->next;
 }
 
 void	ra(t_stack **a)

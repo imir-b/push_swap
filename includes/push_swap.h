@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 22:18:18 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/11/30 04:04:19 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/12/09 14:02:48 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,18 @@ void		ft_free_split(char **args);
 long int	ft_atol(char *nb);
 void		ft_stackaddback(t_stack **stack, t_stack *new);
 t_stack		*ft_stacknew(int nb);
+// ALGO
+void		pa(t_stack **a, t_stack **b);
+void		pb(t_stack **b, t_stack **a);
+void		sa(t_stack **a);
+void		sb(t_stack **b);
+void		ss(t_stack **a, t_stack **b);
+void		ra(t_stack **a);
+void		rb(t_stack **b);
+void		rr(t_stack **a, t_stack **b);
+void		rra(t_stack **a);
+void		rrb(t_stack **b);
+void		rrr(t_stack **a, t_stack **b);
 // TEST
 void		ft_put_stack(t_stack *stack_a);
 

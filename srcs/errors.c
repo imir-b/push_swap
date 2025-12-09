@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 04:04:57 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/11/30 04:05:08 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:29:59 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	ft_free_split(char **args)
 {
 	int	i;
 
+	i = 0;
 	if (!args)
 		return ;
 	while (args[i])

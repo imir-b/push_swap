@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 17:51:54 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/11/30 05:08:35 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/12/09 14:27:33 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	ft_push(t_stack **dest, t_stack **src)
 {
 	int	tmp;
 
+	if (!*dest)
+		
 	tmp = (*src)->number;
 	(*src)->number = (*dest)->number;
 	(*dest)->number = tmp;

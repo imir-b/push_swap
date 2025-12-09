@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 17:50:22 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/09 01:09:15 by vlad             ###   ########.fr       */
+/*   Updated: 2025/12/09 14:25:14 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,16 @@ void	ft_put_stack(t_stack *stack_a)
 
 void	ft_algo_test(t_stack **a, t_stack **b)
 {
-	
+	while (*a)
+	{
+		pb(b, a);
+		if ((*b)->next == *b)
+			continue ;
+		if (*b > (*b)->next)
+		{
+			rrb(b);
+		}
+	}
 }
 
 int	main(int ac, char **av)
@@ -43,8 +52,8 @@ int	main(int ac, char **av)
 		return (1);
 	if (ft_init_stack(&stack_a, ac, av))
 		return (ft_error(), 1);
-	ft_algo_test(stack_a, stack_b); //ALGO ICI
-	ft_put_stack(stack_a); //DEBUG
+	ft_algo_test(&stack_a, &stack_b); //ALGO ICI
+	ft_put_stack(stack_b); //DEBUG
 	ft_free_stack(&stack_a);
 	return (0);
 }

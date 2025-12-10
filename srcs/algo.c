@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 13:27:39 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/10 14:32:15 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/12/10 15:05:28 by vlad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,17 @@ int	ft_calculate(t_stack *current, t_stack *a, t_stack *b)
 	int	count;
 
 	count = 0;
-	(void)current;
-	(void)a;
 	(void)b;
-	//cost rotate/reverse rotate to head a
+	while (1)
+	{
+		if (a == current)
+			break ;
+		if () //cost rotate/reverse rotate to head a
+			ra(a);
+		else
+			rra(a);
+		count++;
+	}
 	//cost target b
 	return (count);
 }

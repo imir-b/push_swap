@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 17:50:22 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/10 11:07:53 by vlad             ###   ########.fr       */
+/*   Updated: 2025/12/10 13:28:07 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,8 @@ void	ft_put_stack(t_stack *stack, char c)
 
 void	ft_algo_test(t_stack **a, t_stack **b)
 {
-	int i = 0; //debug
-
-	while (*a != (*a)->next && (*a)->next != (*a)->prev)
+	while (ft_stacksize(*a) > 3)
 	{
-		printf("--- count: %d ---\n", i); //debug
-		i++; //debug
-		ft_put_stack(*a, 'a'); //debug
-		ft_put_stack(*b, 'b'); //debug
-		printf("---instructions---\n"); //debug
 		pb(b, a);
 		if ((*b)->next == *b)
 			continue ;
@@ -52,16 +45,13 @@ void	ft_algo_test(t_stack **a, t_stack **b)
 		if ((*b)->number < (*b)->next->number)
 			sb(b);
 	}
-	while ((*a)->number > (*a)->next->number || (*a)->number > (*a)->prev->number)
-	{
-		printf("--- count: %d ---\n", i); //debug
-		i++; //debug
-		ft_put_stack(*a, 'a'); //debug
-		ft_put_stack(*b, 'b'); //debug
-		printf("---instructions---\n"); //debug
-		ra(a);
-	}
-	//si stack a = 3 elements, rotate a jusqua avoir le bon ordre puis push b dans a 
+	ft_put_stack(*a, 'a');
+	ft_sort_three(a);
+	ft_put_stack(*a, 'a');
+	ft_put_stack(*b, 'b');
+	ft_push_back(a, b);
+	ft_put_stack(*a, 'a');
+	ft_put_stack(*b, 'b');
 }
 
 int	main(int ac, char **av)
@@ -76,6 +66,6 @@ int	main(int ac, char **av)
 	if (ft_init_stack(&stack_a, ac, av))
 		return (ft_error(), 1);
 	ft_algo_test(&stack_a, &stack_b); //ALGO ICI
-	ft_free_stack(&stack_b);
+	ft_free_stack(&stack_a);
 	return (0);
 }

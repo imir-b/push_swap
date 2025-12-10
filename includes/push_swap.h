@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 22:18:18 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/09 14:02:48 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/12/09 23:09:40 by vlad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ void		rra(t_stack **a);
 void		rrb(t_stack **b);
 void		rrr(t_stack **a, t_stack **b);
 // TEST
-void		ft_put_stack(t_stack *stack_a);
+void		ft_put_stack(t_stack *stack, char c);
 
 #endif

@@ -6,17 +6,23 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 13:27:39 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/10 14:25:15 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/12/10 14:32:15 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_calculate(int nb, t_stack *b)
+int	ft_calculate(t_stack *current, t_stack *a, t_stack *b)
 {
-	(void)nb;
+	int	count;
+
+	count = 0;
+	(void)current;
+	(void)a;
 	(void)b;
-	return (0);
+	//cost rotate/reverse rotate to head a
+	//cost target b
+	return (count);
 }
 
 t_stack	*ft_find_cheapest(t_stack *a, t_stack *b)
@@ -33,7 +39,7 @@ t_stack	*ft_find_cheapest(t_stack *a, t_stack *b)
 	min_count = 0;
 	while (1)
 	{
-		cur_count = ft_calculate(current->number, b);
+		cur_count = ft_calculate(current, a, b);
 		if (cur_count < min_count)
 		{
 			min_count = cur_count;

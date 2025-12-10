@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 22:18:18 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/10 14:20:41 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/12/10 14:31:41 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void		rrr(t_stack **a, t_stack **b);
 t_stack		*ft_find_cheapest(t_stack *a, t_stack *b);
 void		ft_sort_three(t_stack **a);
 void		ft_push_back(t_stack **a, t_stack **b);
+int			ft_calculate(t_stack *current, t_stack *a, t_stack *b);
 // TEST
 void		ft_put_stack(t_stack *stack, char c);
 #endif

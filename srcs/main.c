@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 17:50:22 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/10 13:28:07 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/12/10 21:54:14 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	ft_algo_test(t_stack **a, t_stack **b)
 {
 	while (ft_stacksize(*a) > 3)
 	{
+		ft_set_index(*a);
+		ft_set_index(*b);
 		pb(b, a);
 		if ((*b)->next == *b)
 			continue ;

@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 04:03:21 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/10 11:44:30 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/12/10 21:51:41 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	ft_stackaddback(t_stack **stack, t_stack *new)
 	if (!*stack)
 	{
 		*stack = new;
+		new->index = 0;
 		new->next = new;
 		new->prev = new;
 		return ;
@@ -43,6 +44,7 @@ void	ft_stackaddback(t_stack **stack, t_stack *new)
 	new->prev = last;
 	(*stack)->prev = new;
 	new->next = *stack;
+	new->index = last->index + 1;
 }
 
 int	ft_stacksize(t_stack *stack)
@@ -62,4 +64,23 @@ int	ft_stacksize(t_stack *stack)
 			break ;
 	}
 	return (count);
+}
+
+void	ft_set_index(t_stack *stack)
+{
+	int		i;
+	t_stack	*tmp;
+
+	if (!stack)
+		return ;
+	i = 0;
+	tmp = stack;
+	while (1)
+	{
+		tmp->index = i;
+		i++;
+		tmp = tmp->next;
+		if (tmp == stack)
+			break ;
+	}
 }

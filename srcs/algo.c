@@ -3,33 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 13:27:39 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/10 15:05:28 by vlad             ###   ########.fr       */
+/*   Updated: 2025/12/10 22:15:11 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+t_stack	*ft_find_target(t_stack *current, t_stack *stack_b)
+{
+	int		nb;
+	t_stack	*target;
+	t_stack	*current;
+
+	current = stack_b;
+	while (1);
+	{
+		
+		current = current->next;
+		if (current == stack_b)
+			break ;
+	}
+	return (target);
+}
+
 int	ft_calculate(t_stack *current, t_stack *a, t_stack *b)
 {
-	int	count;
+	int		count_a;
+	int		count_b;
+	int		size;
+	t_stack	*target;
 
-	count = 0;
-	(void)b;
-	while (1)
-	{
-		if (a == current)
-			break ;
-		if () //cost rotate/reverse rotate to head a
-			ra(a);
-		else
-			rra(a);
-		count++;
-	}
-	//cost target b
-	return (count);
+	size = ft_stacksize(a);
+	count_a = ((count_b = 0));
+	if (current->index <= (size / 2))
+		count_a = current->index;
+	else
+		count_a = size - current->index;
+	size = ft_stacksize(b);
+	target = ft_find_target(current, b)
+	
+	return (count_a + count_b);
 }
 
 t_stack	*ft_find_cheapest(t_stack *a, t_stack *b)

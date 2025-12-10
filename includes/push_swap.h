@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 22:18:18 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/10 14:31:41 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/12/10 21:52:22 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 typedef struct s_stack
 {
 	int				number;
+	int				index;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }	t_stack;
@@ -40,6 +41,7 @@ long int	ft_atol(char *nb);
 void		ft_stackaddback(t_stack **stack, t_stack *new);
 t_stack		*ft_stacknew(int nb);
 int			ft_stacksize(t_stack *stack);
+void		ft_set_index(t_stack *stack);
 // ALGO
 void		pa(t_stack **a, t_stack **b);
 void		pb(t_stack **b, t_stack **a);

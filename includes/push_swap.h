@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 22:18:18 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/10 21:52:22 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/12/11 06:54:19 by vlad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_stack
 {
 	int				number;
 	int				index;
+	int				is_reverse;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }	t_stack;
@@ -55,6 +56,7 @@ void		rra(t_stack **a);
 void		rrb(t_stack **b);
 void		rrr(t_stack **a, t_stack **b);
 t_stack		*ft_find_cheapest(t_stack *a, t_stack *b);
+t_stack		*ft_find_target(t_stack *current, t_stack *stack_b);
 void		ft_sort_three(t_stack **a);
 void		ft_push_back(t_stack **a, t_stack **b);
 int			ft_calculate(t_stack *current, t_stack *a, t_stack *b);

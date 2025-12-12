@@ -6,7 +6,7 @@
 /*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 17:51:59 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/09 01:07:06 by vlad             ###   ########.fr       */
+/*   Updated: 2025/12/12 14:26:42 by vlad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,24 @@ void	ft_reverse_rotate(t_stack **stack)
 	*stack = (*stack)->prev;
 }
 
-void	rra(t_stack **a)
+void	rra(t_stack **a, int print)
 {
 	ft_reverse_rotate(a);
-	ft_putstr_fd("rra\n", 1);
+	if (print)
+		ft_putstr_fd("rra\n", 1);
 }
 
-void	rrb(t_stack **b)
+void	rrb(t_stack **b, int print)
 {
 	ft_reverse_rotate(b);
-	ft_putstr_fd("rrb\n", 1);
+	if (print)
+		ft_putstr_fd("rrb\n", 1);
 }
 
-void	rrr(t_stack **a, t_stack **b)
+void	rrr(t_stack **a, t_stack **b, int print)
 {
-	rra(a);
-	rrb(b);
-	ft_putstr_fd("rrr\n", 1);
+	rra(a, 0);
+	rrb(b, 0);
+	if (print)
+		ft_putstr_fd("rrr\n", 1);
 }

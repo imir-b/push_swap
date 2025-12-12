@@ -6,7 +6,7 @@
 /*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 17:50:22 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/12 13:26:52 by vlad             ###   ########.fr       */
+/*   Updated: 2025/12/12 15:00:34 by vlad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,6 @@ void	ft_put_stack(t_stack *stack, char c)
 	}
 }
 
-void	ft_algo(t_stack **a, t_stack **b)
-{
-	t_stack	*cheapest;
-
-	cheapest = NULL;
-	if (ft_stacksize(*a) <= 2 && (*a)->number > (*a)->next->number)
-		sa(a);
-	if (ft_stacksize(*a) <= 2)
-		return ;
-	if (ft_stacksize(*a) > 3 && !*b)
-		pb(b, a);
-	// if (ft_stacksize(*a) > 3 && (*b != (*b)->next))
-	// 	pb(b, a);
-	while (ft_stacksize(*a) > 3)
-	{
-		ft_set_index(*a);
-		ft_set_index(*b);
-		cheapest = ft_find_cheapest(*a, *b);
-		ft_move_nodes(cheapest, cheapest->target, a, b);
-		pb(b, a);
-	}
-	ft_sort_three(a);
-	ft_push_back(b, a);
-}
-
 int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
@@ -70,8 +45,6 @@ int	main(int ac, char **av)
 	if (ft_init_stack(&stack_a, ac, av))
 		return (ft_error(), 1);
 	ft_algo(&stack_a, &stack_b);
-	ft_put_stack(stack_a, 'a'); //debug
-	ft_put_stack(stack_b, 'b'); //debug
 	ft_free_stack(&stack_a);
 	return (0);
 }

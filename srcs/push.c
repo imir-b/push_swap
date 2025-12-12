@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 17:51:54 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/09 21:25:04 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/12/12 14:23:51 by vlad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,16 @@ static void	ft_push(t_stack **dest, t_stack **src)
 	}
 }
 
-void	pa(t_stack **a, t_stack **b)
+void	pa(t_stack **a, t_stack **b, int print)
 {
 	ft_push(a, b);
-	ft_putstr_fd("pa\n", 1);
+	if (print)
+		ft_putstr_fd("pa\n", 1);
 }
 
-void	pb(t_stack **b, t_stack **a)
+void	pb(t_stack **b, t_stack **a, int print)
 {
 	ft_push(b, a);
-	ft_putstr_fd("pb\n", 1);
+	if (print)
+		ft_putstr_fd("pb\n", 1);
 }

@@ -6,166 +6,13 @@
 /*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 13:27:39 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/12 13:19:07 by vlad             ###   ########.fr       */
+/*   Updated: 2025/12/12 15:30:18 by vlad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*ft_find_max(t_stack *stack)
-{
-	t_stack	*max;
-	t_stack	*tmp;
-
-	tmp = stack;
-	max = stack->next;
-	while (1)
-	{
-		if (max->number < tmp->number)
-			max = tmp;
-		tmp = tmp->next;
-		if (tmp == stack)
-			break ;
-	}
-	return (max);
-}
-
-t_stack	*ft_find_target_b(t_stack *node, t_stack *stack_b)
-{
-	long	best;
-	t_stack	*target;
-	t_stack	*tmp;
-
-	target = NULL;
-	tmp = stack_b;
-	best = LONG_MIN;
-	while (1)
-	{
-		if (tmp->number < node->number && tmp->number > best)
-		{
-			best = tmp->number;
-			target = tmp;
-		}
-		tmp = tmp->next;
-		if (tmp == stack_b)
-			break ;
-	}
-	if (best == LONG_MIN)
-		target = ft_find_max(stack_b);
-	return (target);
-}
-
-t_stack	*ft_find_min(t_stack *stack)
-{
-	t_stack	*min;
-	t_stack	*tmp;
-
-	tmp = stack;
-	min = stack->next;
-	while (1)
-	{
-		if (min->number > tmp->number)
-			min = tmp;
-		tmp = tmp->next;
-		if (tmp == stack)
-			break ;
-	}
-	return (min);
-}
-
-t_stack	*ft_find_target_a(t_stack *node, t_stack *stack_a)
-{
-	long	best;
-	t_stack	*target;
-	t_stack	*tmp;
-
-	target = NULL;
-	tmp = stack_a;
-	best = LONG_MAX;
-	while (1)
-	{
-		if (tmp->number > node->number && tmp->number < best)
-		{
-			best = tmp->number;
-			target = tmp;
-		}
-		tmp = tmp->next;
-		if (tmp == stack_a)
-			break ;
-	}
-	if (best == LONG_MAX)
-		target = ft_find_min(stack_a);
-	return (target);
-}
-
-int	ft_get_cost(t_stack *node, t_stack *stack)
-{
-	int	cost;
-	int	size;
-
-	size = ft_stacksize(stack);
-	cost = 0;
-	if (node->index <= (size / 2))
-	{
-		node->is_reverse = 0;
-		cost = node->index;
-	}
-	else
-	{
-		node->is_reverse = 1;
-		cost = size - node->index;
-	}
-	return (cost);
-}
-
-int	ft_get_total_cost(t_stack *current, t_stack *a, t_stack *b)
-{
-	int		count_a;
-	int		count_b;
-	t_stack	*target;
-
-	target = current->target;
-	count_a = ft_get_cost(current, a);
-	count_b = ft_get_cost(target, b);
-	if (target->is_reverse == current->is_reverse)
-	{
-		if (count_a > count_b)
-			return (count_a);
-		return (count_b);
-	}
-	else
-		return (count_a + count_b);
-}
-
-t_stack	*ft_find_cheapest(t_stack *a, t_stack *b)
-{
-	t_stack	*cheapest;
-	t_stack	*current;
-	long	min_count;
-	long	cur_count;
-
-	if (!a)
-		return (NULL);
-	current = a;
-	cheapest = NULL;
-	min_count = LONG_MAX;
-	while (1)
-	{
-		current->target = ft_find_target_b(current, b);
-		cur_count = ft_get_total_cost(current, a, b);
-		if (cur_count < min_count)
-		{
-			min_count = cur_count;
-			cheapest = current;
-		}
-		current = current->next;
-		if (current == a)
-			break ;
-	}
-	return (cheapest);
-}
-
-void	ft_sort_three(t_stack **a)
+void	ft_sort_three(t_stack **a, int print)
 {
 	const int	first = (*a)->number;
 	const int	second = (*a)->next->number;
@@ -174,46 +21,46 @@ void	ft_sort_three(t_stack **a)
 	if (ft_stacksize(*a) != 3)
 		return ;
 	if (first < second && first > last)
-		return (rra(a));
+		return (rra(a, print));
 	if (first < second && second > last)
-		return (rra(a), sa(a));
+		return (rra(a, print), sa(a, print));
 	if (first > second && second > last)
-		return (sa(a), rra(a));
+		return (sa(a, print), rra(a, print));
 	if (first > second && first < last)
-		return (sa(a));
+		return (sa(a, print));
 	if (first > second && second < last)
-		return (ra(a));
+		return (ra(a, print));
 }
 
-void	ft_move_nodes(t_stack *node, t_stack *target, t_stack **a, t_stack **b)
+void	ft_move_nodes(t_stack *node, t_stack **a, t_stack **b, int print)
 {
-	if ((node->is_reverse == target->is_reverse) == 1)
+	if ((node->is_reverse == node->target->is_reverse) == 1)
 	{
-		while (*b != target && *a != node)
-			rr(a, b);
+		while (*b != node->target && *a != node)
+			rr(a, b, print);
 	}
-	else if ((node->is_reverse == target->is_reverse) == 0)
+	else if ((node->is_reverse == node->target->is_reverse) == 0)
 	{
-		while (*b != target && *a != node)
-			rrr(a, b);
+		while (*b != node->target && *a != node)
+			rrr(a, b, print);
 	}
-	while (*b != target)
+	while (*b != node->target)
 	{
-		if (target->is_reverse)
-			rrb(b);
+		if (node->target->is_reverse)
+			rrb(b, print);
 		else
-			rb(b);
+			rb(b, print);
 	}
 	while (*a != node)
 	{
 		if (node->is_reverse)
-			rra(a);
+			rra(a, print);
 		else
-			ra(a);
+			ra(a, print);
 	}
 }
 
-void	ft_push_back(t_stack **b, t_stack **a)
+void	ft_push_back(t_stack **b, t_stack **a, int print)
 {
 	t_stack	*target_a;
 
@@ -225,13 +72,52 @@ void	ft_push_back(t_stack **b, t_stack **a)
 		if (target_a->index <= ft_stacksize(*a) / 2)
 		{
         	while (*a != target_a)
-				ra(a);
+				ra(a, print);
 		}
 		else
 		{
 			while (*a != target_a)
-				rra(a);
+				rra(a, print);
 		}
-		pa(a, b);
+		pa(a, b, print);
 	}
+}
+
+void	ft_align_stack(t_stack **a, int print)
+{
+	t_stack	*min;
+
+	ft_set_index(*a);
+	min = ft_find_min(*a);
+	while (*a != min)
+	{
+		if (min->index <= ft_stacksize(*a) / 2)
+			ra(a, print);
+		else
+			rra(a, print);
+	}
+}
+
+void	ft_algo(t_stack **a, t_stack **b)
+{
+	t_stack	*cheapest;
+
+	cheapest = NULL;
+	if (ft_stacksize(*a) == 2 && (*a)->number > (*a)->next->number)
+		sa(a, 1);
+	if (ft_stacksize(*a) <= 2)
+		return ;
+	if (ft_stacksize(*a) > 3 && !*b)
+		pb(b, a, 1);
+	while (ft_stacksize(*a) > 3)
+	{
+		ft_set_index(*a);
+		ft_set_index(*b);
+		cheapest = ft_find_cheapest(*a, *b);
+		ft_move_nodes(cheapest, a, b, 1);
+		pb(b, a, 1);
+	}
+	ft_sort_three(a, 1);
+	ft_push_back(b, a, 1);
+	ft_align_stack(a, 1);
 }

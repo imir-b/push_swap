@@ -6,7 +6,7 @@
 /*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 17:50:34 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/12 15:36:06 by vlad             ###   ########.fr       */
+/*   Updated: 2025/12/12 15:44:52 by vlad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,26 +76,5 @@ int	ft_parsing(t_stack **stack_a, char **args)
 		ft_stackaddback(stack_a, ft_stacknew((int)nb));
 		args++;
 	}
-	return (0);
-}
-
-int	ft_init_stack(t_stack **stack_a, int ac, char **av)
-{
-	char	**args;
-	int		i;
-
-	i = 1;
-	while (i < ac)
-	{
-		args = ft_split(av[i], ' ');
-		if (!args)
-			return (1);
-		if (ft_parsing(stack_a, args))
-			return (ft_free_stack(stack_a), ft_free_split(args), 1);
-		ft_free_split(args);
-		i++;
-	}
-	if (ft_check_duplicate(*stack_a))
-		return (ft_free_stack(stack_a), 1);
 	return (0);
 }

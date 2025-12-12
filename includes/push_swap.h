@@ -6,7 +6,7 @@
 /*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 22:18:18 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/12 14:48:43 by vlad             ###   ########.fr       */
+/*   Updated: 2025/12/12 17:11:11 by vlad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-# include <stdio.h>
 
 typedef struct s_stack
 {
@@ -30,7 +29,6 @@ typedef struct s_stack
 }	t_stack;
 
 // PARSING
-int			ft_init_stack(t_stack **stack_a, int ac, char **av);
 int			ft_parsing(t_stack **stack_a, char **args);
 int			ft_check_duplicate(t_stack *stack_a);
 int			ft_check_args(char **args);
@@ -40,10 +38,14 @@ void		ft_free_stack(t_stack **stack);
 void		ft_free_split(char **args);
 // UTILS
 long int	ft_atol(char *nb);
+int			ft_strcmp(const char *s1, const char *s2);
+int			ft_is_sorted(t_stack *stack);
+// STACK UTILS
 void		ft_stackaddback(t_stack **stack, t_stack *new);
 t_stack		*ft_stacknew(int nb);
 int			ft_stacksize(t_stack *stack);
 void		ft_set_index(t_stack *stack);
+int			ft_init_stack(t_stack **stack_a, int ac, char **av);
 // PUSH
 void		pa(t_stack **a, t_stack **b, int print);
 void		pb(t_stack **b, t_stack **a, int print);
@@ -71,7 +73,7 @@ void		ft_sort_three(t_stack **a, int print);
 void		ft_move_nodes(t_stack *node, t_stack **a, t_stack **b, int print);
 void		ft_push_back(t_stack **b, t_stack **a, int print);
 void		ft_align_stack(t_stack **a, int print);
-void		ft_algo(t_stack **a, t_stack **b);
+void		ft_push_swap(t_stack **a, t_stack **b, int print);
 // TEST
-void		ft_put_stack(t_stack *stack, char c);
+//void		ft_put_stack(t_stack *stack, char c);
 #endif

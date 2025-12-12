@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 04:04:57 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/09 11:29:59 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/12/12 17:08:42 by vlad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	ft_free_stack(t_stack **stack)
 {
 	t_stack	*end;
 
+	if (!stack || !*stack)
+		return ;
 	end = (*stack)->prev;
 	while (*stack != end)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 04:03:21 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/10 21:51:41 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:45:01 by vlad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,25 @@ void	ft_set_index(t_stack *stack)
 		if (tmp == stack)
 			break ;
 	}
+}
+
+int	ft_init_stack(t_stack **stack_a, int ac, char **av)
+{
+	char	**args;
+	int		i;
+
+	i = 1;
+	while (i < ac)
+	{
+		args = ft_split(av[i], ' ');
+		if (!args)
+			return (1);
+		if (ft_parsing(stack_a, args))
+			return (ft_free_stack(stack_a), ft_free_split(args), 1);
+		ft_free_split(args);
+		i++;
+	}
+	if (ft_check_duplicate(*stack_a))
+		return (ft_free_stack(stack_a), 1);
+	return (0);
 }

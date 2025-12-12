@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 03:11:42 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/11/30 04:07:09 by vbleskin         ###   ########.fr       */
+/*   Updated: 2025/12/12 16:48:52 by vlad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,32 @@ long int	ft_atol(char *nb)
 		nb++;
 	}
 	return (neg * n);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && *s2 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
+}
+
+int	ft_is_sorted(t_stack *stack)
+{
+	t_stack	*tmp;
+
+	if (!stack)
+		return (1);
+	tmp = stack;
+	while (1)
+	{
+		if (tmp->number > tmp->next->number && tmp->next != stack)
+			return (0);
+		tmp = tmp->next;
+		if (tmp == stack)
+			break ;
+	}
+	return (1);
 }

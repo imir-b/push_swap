@@ -6,7 +6,7 @@
 /*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 22:18:18 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/11 06:54:19 by vlad             ###   ########.fr       */
+/*   Updated: 2025/12/12 01:42:46 by vlad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_stack
 	int				number;
 	int				index;
 	int				is_reverse;
+	struct s_stack	*target;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }	t_stack;
@@ -56,10 +57,15 @@ void		rra(t_stack **a);
 void		rrb(t_stack **b);
 void		rrr(t_stack **a, t_stack **b);
 t_stack		*ft_find_cheapest(t_stack *a, t_stack *b);
-t_stack		*ft_find_target(t_stack *current, t_stack *stack_b);
+t_stack		*ft_find_target_b(t_stack *node, t_stack *stack_b);
+t_stack		*ft_find_max(t_stack *stack);
+t_stack		*ft_find_target_a(t_stack *node, t_stack *stack_a);
+t_stack		*ft_find_min(t_stack *stack);
 void		ft_sort_three(t_stack **a);
-void		ft_push_back(t_stack **a, t_stack **b);
-int			ft_calculate(t_stack *current, t_stack *a, t_stack *b);
+int			ft_get_cost(t_stack *node, t_stack *stack);
+int			ft_get_total_cost(t_stack *current, t_stack *a, t_stack *b);
+void		ft_move_nodes(t_stack *node, t_stack *target, t_stack **a, t_stack **b);
+void		ft_push_back(t_stack **b, t_stack **a);
 // TEST
 void		ft_put_stack(t_stack *stack, char c);
 #endif

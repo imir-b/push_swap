@@ -6,53 +6,135 @@
 /*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 13:27:39 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/11 07:21:03 by vlad             ###   ########.fr       */
+/*   Updated: 2025/12/12 13:19:07 by vlad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*ft_find_target(t_stack *current, t_stack *stack_b)
+t_stack	*ft_find_max(t_stack *stack)
 {
-	int		nb;
+	t_stack	*max;
+	t_stack	*tmp;
+
+	tmp = stack;
+	max = stack->next;
+	while (1)
+	{
+		if (max->number < tmp->number)
+			max = tmp;
+		tmp = tmp->next;
+		if (tmp == stack)
+			break ;
+	}
+	return (max);
+}
+
+t_stack	*ft_find_target_b(t_stack *node, t_stack *stack_b)
+{
+	long	best;
 	t_stack	*target;
 	t_stack	*tmp;
 
 	target = NULL;
 	tmp = stack_b;
+	best = LONG_MIN;
 	while (1)
 	{
-		nb = tmp->number;
-		if ((current->number < nb) && (!target || target->number < nb))
+		if (tmp->number < node->number && tmp->number > best)
+		{
+			best = tmp->number;
 			target = tmp;
+		}
 		tmp = tmp->next;
 		if (tmp == stack_b)
 			break ;
 	}
+	if (best == LONG_MIN)
+		target = ft_find_max(stack_b);
 	return (target);
 }
 
-int	ft_calculate(t_stack *current, t_stack *a, t_stack *b) //prendre en compte rr et rrr
+t_stack	*ft_find_min(t_stack *stack)
+{
+	t_stack	*min;
+	t_stack	*tmp;
+
+	tmp = stack;
+	min = stack->next;
+	while (1)
+	{
+		if (min->number > tmp->number)
+			min = tmp;
+		tmp = tmp->next;
+		if (tmp == stack)
+			break ;
+	}
+	return (min);
+}
+
+t_stack	*ft_find_target_a(t_stack *node, t_stack *stack_a)
+{
+	long	best;
+	t_stack	*target;
+	t_stack	*tmp;
+
+	target = NULL;
+	tmp = stack_a;
+	best = LONG_MAX;
+	while (1)
+	{
+		if (tmp->number > node->number && tmp->number < best)
+		{
+			best = tmp->number;
+			target = tmp;
+		}
+		tmp = tmp->next;
+		if (tmp == stack_a)
+			break ;
+	}
+	if (best == LONG_MAX)
+		target = ft_find_min(stack_a);
+	return (target);
+}
+
+int	ft_get_cost(t_stack *node, t_stack *stack)
+{
+	int	cost;
+	int	size;
+
+	size = ft_stacksize(stack);
+	cost = 0;
+	if (node->index <= (size / 2))
+	{
+		node->is_reverse = 0;
+		cost = node->index;
+	}
+	else
+	{
+		node->is_reverse = 1;
+		cost = size - node->index;
+	}
+	return (cost);
+}
+
+int	ft_get_total_cost(t_stack *current, t_stack *a, t_stack *b)
 {
 	int		count_a;
 	int		count_b;
-	int		size;
 	t_stack	*target;
 
-	size = ft_stacksize(a);
-	count_a = 0;
-	if (current->index <= (size / 2))
-		count_a = current->index;
+	target = current->target;
+	count_a = ft_get_cost(current, a);
+	count_b = ft_get_cost(target, b);
+	if (target->is_reverse == current->is_reverse)
+	{
+		if (count_a > count_b)
+			return (count_a);
+		return (count_b);
+	}
 	else
-		count_a = size - current->index;
-	size = ft_stacksize(b);
-	count_b = 0;
-	target = ft_find_target(current, b);
-	if (target->index <= (size / 2))
-		count_b = target->index;
-	else
-		count_b = size - target->index;
-	return (count_a + count_b);
+		return (count_a + count_b);
 }
 
 t_stack	*ft_find_cheapest(t_stack *a, t_stack *b)
@@ -69,7 +151,8 @@ t_stack	*ft_find_cheapest(t_stack *a, t_stack *b)
 	min_count = LONG_MAX;
 	while (1)
 	{
-		cur_count = ft_calculate(current, a, b);
+		current->target = ft_find_target_b(current, b);
+		cur_count = ft_get_total_cost(current, a, b);
 		if (cur_count < min_count)
 		{
 			min_count = cur_count;
@@ -104,11 +187,51 @@ void	ft_sort_three(t_stack **a)
 
 void	ft_move_nodes(t_stack *node, t_stack *target, t_stack **a, t_stack **b)
 {
-
+	if ((node->is_reverse == target->is_reverse) == 1)
+	{
+		while (*b != target && *a != node)
+			rr(a, b);
+	}
+	else if ((node->is_reverse == target->is_reverse) == 0)
+	{
+		while (*b != target && *a != node)
+			rrr(a, b);
+	}
+	while (*b != target)
+	{
+		if (target->is_reverse)
+			rrb(b);
+		else
+			rb(b);
+	}
+	while (*a != node)
+	{
+		if (node->is_reverse)
+			rra(a);
+		else
+			ra(a);
+	}
 }
 
-void	ft_push_back(t_stack **a, t_stack **b)
+void	ft_push_back(t_stack **b, t_stack **a)
 {
+	t_stack	*target_a;
+
 	while (*b)
+	{
+		ft_set_index(*a);
+		ft_set_index(*b);
+		target_a = ft_find_target_a(*b, *a);
+		if (target_a->index <= ft_stacksize(*a) / 2)
+		{
+        	while (*a != target_a)
+				ra(a);
+		}
+		else
+		{
+			while (*a != target_a)
+				rra(a);
+		}
 		pa(a, b);
+	}
 }

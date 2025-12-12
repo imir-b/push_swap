@@ -6,7 +6,7 @@
 /*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 13:27:39 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/12 16:26:13 by vlad             ###   ########.fr       */
+/*   Updated: 2025/12/12 22:47:39 by vlad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ void	ft_sort_three(t_stack **a, int print)
 
 void	ft_move_nodes(t_stack *node, t_stack **a, t_stack **b, int print)
 {
-	if ((node->is_reverse == node->target->is_reverse) == 1)
-	{
-		while (*b != node->target && *a != node)
-			rr(a, b, print);
-	}
-	else if ((node->is_reverse == node->target->is_reverse) == 0)
+	if ((node->is_reverse == 1) && (node->target->is_reverse == 1))
 	{
 		while (*b != node->target && *a != node)
 			rrr(a, b, print);
+	}
+	else if ((node->is_reverse ==  0) && (node->target->is_reverse == 0))
+	{
+		while (*b != node->target && *a != node)
+			rr(a, b, print);
 	}
 	while (*b != node->target)
 	{
@@ -109,11 +109,14 @@ void	ft_push_swap(t_stack **a, t_stack **b, int print)
 		return ;
 	if (ft_stacksize(*a) > 3 && !*b)
 		pb(b, a, print);
+	if (ft_stacksize(*a) > 3 && !(*b)->next)
+		pb(b, a, print);
 	while (ft_stacksize(*a) > 3)
 	{
 		ft_set_index(*a);
 		ft_set_index(*b);
 		cheapest = ft_find_cheapest(*a, *b);
+		ft_get_total_cost(cheapest, *a, *b);
 		ft_move_nodes(cheapest, a, b, print);
 		pb(b, a, print);
 	}

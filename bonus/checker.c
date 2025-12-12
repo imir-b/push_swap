@@ -6,11 +6,12 @@
 /*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:05:46 by vlad              #+#    #+#             */
-/*   Updated: 2025/12/12 17:10:16 by vlad             ###   ########.fr       */
+/*   Updated: 2025/12/12 17:58:47 by vlad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "get_next_line.h"
 
 void	ft_exec(char *line, t_stack **a, t_stack **b)
 {
@@ -27,8 +28,8 @@ void	ft_exec(char *line, t_stack **a, t_stack **b)
     else if (!ft_strcmp(line, "rrr\n")) rrr(a, b, 0);
     else
     {
-        ft_free_stack(*a);
-        ft_free_stack(*b);
+        ft_free_stack(a);
+        ft_free_stack(b);
         free(line);
         ft_error();
         exit(1);

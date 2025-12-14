@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:05:46 by vlad              #+#    #+#             */
-/*   Updated: 2025/12/12 17:58:47 by vlad             ###   ########.fr       */
+/*   Updated: 2025/12/14 20:00:30 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,36 @@
 
 void	ft_exec(char *line, t_stack **a, t_stack **b)
 {
-	if (!ft_strcmp(line, "sa\n"))      sa(a, 0);
-    else if (!ft_strcmp(line, "sb\n")) sb(b, 0);
-    else if (!ft_strcmp(line, "ss\n")) ss(a, b, 0);
-    else if (!ft_strcmp(line, "pa\n")) pa(a, b, 0);
-    else if (!ft_strcmp(line, "pb\n")) pb(b, a, 0);
-    else if (!ft_strcmp(line, "ra\n")) ra(a, 0);
-    else if (!ft_strcmp(line, "rb\n")) rb(b, 0);
-    else if (!ft_strcmp(line, "rr\n")) rr(a, b, 0);
-    else if (!ft_strcmp(line, "rra\n")) rra(a, 0);
-    else if (!ft_strcmp(line, "rrb\n")) rrb(b, 0);
-    else if (!ft_strcmp(line, "rrr\n")) rrr(a, b, 0);
-    else
-    {
-        ft_free_stack(a);
-        ft_free_stack(b);
-        free(line);
-        ft_error();
-        exit(1);
-    }
+	if (!ft_strcmp(line, "sa\n"))
+		sa(a, 0);
+	else if (!ft_strcmp(line, "sb\n"))
+		sb(b, 0);
+	else if (!ft_strcmp(line, "ss\n"))
+		ss(a, b, 0);
+	else if (!ft_strcmp(line, "pa\n"))
+		pa(a, b, 0);
+	else if (!ft_strcmp(line, "pb\n"))
+		pb(b, a, 0);
+	else if (!ft_strcmp(line, "ra\n"))
+		ra(a, 0);
+	else if (!ft_strcmp(line, "rb\n"))
+		rb(b, 0);
+	else if (!ft_strcmp(line, "rr\n"))
+		rr(a, b, 0);
+	else if (!ft_strcmp(line, "rra\n"))
+		rra(a, 0);
+	else if (!ft_strcmp(line, "rrb\n"))
+		rrb(b, 0);
+	else if (!ft_strcmp(line, "rrr\n"))
+		rrr(a, b, 0);
+	else
+	{
+		ft_free_stack(a);
+		ft_free_stack(b);
+		free(line);
+		ft_error();
+		exit(1);
+	}
 }
 
 int	main(int ac, char **av)

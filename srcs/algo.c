@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 13:27:39 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/12 22:47:39 by vlad             ###   ########.fr       */
+/*   Updated: 2025/12/14 19:57:21 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_move_nodes(t_stack *node, t_stack **a, t_stack **b, int print)
 		while (*b != node->target && *a != node)
 			rrr(a, b, print);
 	}
-	else if ((node->is_reverse ==  0) && (node->target->is_reverse == 0))
+	else if ((node->is_reverse == 0) && (node->target->is_reverse == 0))
 	{
 		while (*b != node->target && *a != node)
 			rr(a, b, print);
@@ -71,7 +71,7 @@ void	ft_push_back(t_stack **b, t_stack **a, int print)
 		target_a = ft_find_target_a(*b, *a);
 		if (target_a->index <= ft_stacksize(*a) / 2)
 		{
-        	while (*a != target_a)
+			while (*a != target_a)
 				ra(a, print);
 		}
 		else

@@ -6,12 +6,16 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 13:27:39 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/14 19:57:21 by vbleskin         ###   ########.fr       */
+/*   Updated: 2026/01/02 05:45:59 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ * Fonction qui trie une stack de 3 nombres, on l'utilise quand on a plus que 
+ * 3 nombres dans 'a', on a 5 cas possibles avec un max de 2 operations.
+ */
 void	ft_sort_three(t_stack **a, int print)
 {
 	const int	first = (*a)->number;
@@ -32,14 +36,18 @@ void	ft_sort_three(t_stack **a, int print)
 		return (ra(a, print));
 }
 
+/**
+ * Fonction qui deplace 'node' et sa cible 'node->target' en haut de leurs stack
+ * respectives en utilisant le moins de coups possibles.
+ */
 void	ft_move_nodes(t_stack *node, t_stack **a, t_stack **b, int print)
 {
-	if ((node->is_reverse == 1) && (node->target->is_reverse == 1))
+	if ((node->is_reverse == TRUE) && (node->target->is_reverse == TRUE))
 	{
 		while (*b != node->target && *a != node)
 			rrr(a, b, print);
 	}
-	else if ((node->is_reverse == 0) && (node->target->is_reverse == 0))
+	else if ((node->is_reverse == FALSE) && (node->target->is_reverse == FALSE))
 	{
 		while (*b != node->target && *a != node)
 			rr(a, b, print);
@@ -60,6 +68,10 @@ void	ft_move_nodes(t_stack *node, t_stack **a, t_stack **b, int print)
 	}
 }
 
+/**
+ * Fonction qui remet les noeuds de 'b' dans 'a' une fois dans le
+ * bon ordre.
+ */
 void	ft_push_back(t_stack **b, t_stack **a, int print)
 {
 	t_stack	*target_a;
@@ -83,6 +95,9 @@ void	ft_push_back(t_stack **b, t_stack **a, int print)
 	}
 }
 
+/**
+ * Remet le plus petit nombre de 'a' en haut de la stack.
+ */
 void	ft_align_stack(t_stack **a, int print)
 {
 	t_stack	*min;
@@ -98,6 +113,9 @@ void	ft_align_stack(t_stack **a, int print)
 	}
 }
 
+/**
+ * Fonction qui gere tout l'algo de trie.
+ */
 void	ft_push_swap(t_stack **a, t_stack **b, int print)
 {
 	t_stack	*cheapest;

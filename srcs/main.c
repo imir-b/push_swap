@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 17:50:22 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/12 22:43:34 by vlad             ###   ########.fr       */
+/*   Updated: 2026/01/02 04:41:46 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ int	main(int ac, char **av)
 	stack_a = NULL;
 	stack_b = NULL;
 	if (ac < 2)
-		return (1);
+		return (ERROR);
 	if (ft_init_stack(&stack_a, ac, av))
-		return (ft_error(), 1);
-	ft_push_swap(&stack_a, &stack_b, 1);
+		return (ft_error());
+	ft_push_swap(&stack_a, &stack_b, PRINT_Y);
 	ft_free_stack(&stack_a);
-	return (0);
+	return (SUCCESS);
 }

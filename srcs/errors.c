@@ -6,15 +6,16 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 04:04:57 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/14 19:58:09 by vbleskin         ###   ########.fr       */
+/*   Updated: 2026/01/02 04:42:05 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_error(void)
+int	ft_error(void)
 {
-	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd("Error\n", STDERR_FILENO);
+	return (ERROR);
 }
 
 void	ft_free_stack(t_stack **stack)

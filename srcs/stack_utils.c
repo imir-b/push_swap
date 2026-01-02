@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 04:03:21 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/12 15:45:01 by vlad             ###   ########.fr       */
+/*   Updated: 2026/01/02 05:46:48 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ * Cree un nouveau noeud relie a rien et qui contient le nombre 'nb'
+ */
 t_stack	*ft_stacknew(int nb)
 {
 	t_stack	*new;
@@ -25,6 +28,9 @@ t_stack	*ft_stacknew(int nb)
 	return (new);
 }
 
+/**
+ * Fonction qui ajoute un noeud 'new' a la fin de la 'stack'
+ */
 void	ft_stackaddback(t_stack **stack, t_stack *new)
 {
 	t_stack	*last;
@@ -47,16 +53,19 @@ void	ft_stackaddback(t_stack **stack, t_stack *new)
 	new->index = last->index + 1;
 }
 
+/**
+ * Calcul la taille de la 'stack'.
+ */
 int	ft_stacksize(t_stack *stack)
 {
 	int		count;
 	t_stack	*tmp;
 
-	if (!stack)
-		return (0);
 	count = 0;
+	if (!stack)
+		return (count);
 	tmp = stack;
-	while (1)
+	while (TRUE)
 	{
 		tmp = tmp->next;
 		count++;
@@ -66,6 +75,9 @@ int	ft_stacksize(t_stack *stack)
 	return (count);
 }
 
+/**
+ * Met a jour l'index actuel de chaque noeud dans la 'stack'.
+ */
 void	ft_set_index(t_stack *stack)
 {
 	int		i;
@@ -85,6 +97,10 @@ void	ft_set_index(t_stack *stack)
 	}
 }
 
+/**
+ * Initialise 'stack_a' et prepare les arguments 'av' pour les fonctions de 
+ * parsing
+ */
 int	ft_init_stack(t_stack **stack_a, int ac, char **av)
 {
 	char	**args;
@@ -97,11 +113,11 @@ int	ft_init_stack(t_stack **stack_a, int ac, char **av)
 		if (!args)
 			return (1);
 		if (ft_parsing(stack_a, args))
-			return (ft_free_stack(stack_a), ft_free_split(args), 1);
+			return (ft_free_stack(stack_a), ft_free_split(args), ERROR);
 		ft_free_split(args);
 		i++;
 	}
 	if (ft_check_duplicate(*stack_a))
-		return (ft_free_stack(stack_a), 1);
-	return (0);
+		return (ft_free_stack(stack_a), ERROR);
+	return (SUCCESS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 22:18:18 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/12 23:11:02 by vlad             ###   ########.fr       */
+/*   Updated: 2026/01/02 04:52:59 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+
+# define SUCCESS 0
+# define ERROR 1
+# define PRINT_Y 1
+# define PRINT_N 0
+# define TRUE 1
+# define FALSE 0
 
 typedef struct s_stack
 {
@@ -33,7 +40,7 @@ int			ft_parsing(t_stack **stack_a, char **args);
 int			ft_check_duplicate(t_stack *stack_a);
 int			ft_check_args(char **args);
 // ERROR & FREE
-void		ft_error(void);
+int			ft_error(void);
 void		ft_free_stack(t_stack **stack);
 void		ft_free_split(char **args);
 // UTILS
@@ -74,6 +81,6 @@ void		ft_move_nodes(t_stack *node, t_stack **a, t_stack **b, int print);
 void		ft_push_back(t_stack **b, t_stack **a, int print);
 void		ft_align_stack(t_stack **a, int print);
 void		ft_push_swap(t_stack **a, t_stack **b, int print);
-// TEST
+// DEBUG
 //void		ft_put_stack(t_stack *stack, char c);
 #endif

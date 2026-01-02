@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   algo_find_node.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:49:24 by vlad              #+#    #+#             */
-/*   Updated: 2025/12/12 22:35:39 by vlad             ###   ########.fr       */
+/*   Updated: 2026/01/02 05:10:14 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ * Fonction qui retourne le noeud avec le plus grand nombre de la 'stack'
+ */
 t_stack	*ft_find_max(t_stack *stack)
 {
 	t_stack	*max;
@@ -19,7 +22,7 @@ t_stack	*ft_find_max(t_stack *stack)
 
 	tmp = stack;
 	max = stack->next;
-	while (1)
+	while (TRUE)
 	{
 		if (max->number < tmp->number)
 			max = tmp;
@@ -30,6 +33,10 @@ t_stack	*ft_find_max(t_stack *stack)
 	return (max);
 }
 
+/**
+ * Fonction qui retourne le noeud cible dans 'stack_b' qui devra
+ * arriver juste en dessous de 'node'
+ */
 t_stack	*ft_find_target_b(t_stack *node, t_stack *stack_b)
 {
 	long	best;
@@ -39,7 +46,7 @@ t_stack	*ft_find_target_b(t_stack *node, t_stack *stack_b)
 	target = NULL;
 	tmp = stack_b;
 	best = LONG_MIN;
-	while (1)
+	while (TRUE)
 	{
 		if (tmp->number < node->number && tmp->number > best)
 		{
@@ -55,6 +62,9 @@ t_stack	*ft_find_target_b(t_stack *node, t_stack *stack_b)
 	return (target);
 }
 
+/**
+ * Fonction qui retourne le noeud avec le plus petit nombre de la 'stack'
+ */
 t_stack	*ft_find_min(t_stack *stack)
 {
 	t_stack	*min;
@@ -62,7 +72,7 @@ t_stack	*ft_find_min(t_stack *stack)
 
 	tmp = stack;
 	min = stack->next;
-	while (1)
+	while (TRUE)
 	{
 		if (min->number > tmp->number)
 			min = tmp;
@@ -73,6 +83,10 @@ t_stack	*ft_find_min(t_stack *stack)
 	return (min);
 }
 
+/**
+ * Fonction qui retourne le noeud de 'b' qui prendra le moins de coups a trier
+ * dans 'a'.
+ */
 t_stack	*ft_find_target_a(t_stack *node, t_stack *stack_a)
 {
 	long	best;
@@ -82,7 +96,7 @@ t_stack	*ft_find_target_a(t_stack *node, t_stack *stack_a)
 	target = NULL;
 	tmp = stack_a;
 	best = LONG_MAX;
-	while (1)
+	while (TRUE)
 	{
 		if (tmp->number > node->number && tmp->number < best)
 		{
@@ -98,6 +112,10 @@ t_stack	*ft_find_target_a(t_stack *node, t_stack *stack_a)
 	return (target);
 }
 
+/**
+ * Fonction qui retourne le noeud de 'a' qui prendra la moins de coups a trier 
+ * dans 'b'.
+ */
 t_stack	*ft_find_cheapest(t_stack *a, t_stack *b)
 {
 	t_stack	*cheapest;
@@ -110,7 +128,7 @@ t_stack	*ft_find_cheapest(t_stack *a, t_stack *b)
 	current = a;
 	cheapest = NULL;
 	min_count = LONG_MAX;
-	while (1)
+	while (TRUE)
 	{
 		current->target = ft_find_target_b(current, b);
 		cur_count = ft_get_total_cost(current, a, b);

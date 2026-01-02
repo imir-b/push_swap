@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 17:52:06 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/12 14:26:12 by vlad             ###   ########.fr       */
+/*   Updated: 2026/01/02 04:48:02 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@ void	sa(t_stack **a, int print)
 {
 	ft_swap(a);
 	if (print)
-		ft_putstr_fd("sa\n", 1);
+		ft_putstr_fd("sa\n", STDOUT_FILENO);
 }
 
 void	sb(t_stack **b, int print)
 {
 	ft_swap(b);
 	if (print)
-		ft_putstr_fd("sb\n", 1);
+		ft_putstr_fd("sb\n", STDOUT_FILENO);
 }
 
 void	ss(t_stack **a, t_stack **b, int print)
 {
-	sa(a, 0);
-	sb(b, 0);
+	sa(a, PRINT_N);
+	sb(b, PRINT_N);
 	if (print)
-		ft_putstr_fd("ss\n", 1);
+		ft_putstr_fd("ss\n", STDOUT_FILENO);
 }

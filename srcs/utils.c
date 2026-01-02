@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 03:11:42 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/15 00:53:41 by vbleskin         ###   ########.fr       */
+/*   Updated: 2026/01/02 05:43:12 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ static int	ft_isspace(char c)
 		return (0);
 }
 
+/**
+ * Fonction qui convertit un char * 'nb' en long int.
+ */
 long int	ft_atol(char *nb)
 {
 	int			neg;
@@ -55,20 +58,23 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
 
+/**
+ * Fonction qui verifie si la 'stack' est bien triee.
+ */
 int	ft_is_sorted(t_stack *stack)
 {
 	t_stack	*tmp;
 
 	if (!stack)
-		return (1);
+		return (TRUE);
 	tmp = stack;
-	while (1)
+	while (TRUE)
 	{
 		if (tmp->number > tmp->next->number && tmp->next != stack)
-			return (0);
+			return (FALSE);
 		tmp = tmp->next;
 		if (tmp == stack)
 			break ;
 	}
-	return (1);
+	return (TRUE);
 }

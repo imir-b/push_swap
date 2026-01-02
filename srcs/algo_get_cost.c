@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   algo_get_cost.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlad <vlad@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:59:34 by vlad              #+#    #+#             */
-/*   Updated: 2025/12/12 22:35:30 by vlad             ###   ########.fr       */
+/*   Updated: 2026/01/02 05:13:22 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ * Calcule le nombre de coups pour monter 'node' en haut de la 'stack'
+ */
 int	ft_get_cost(t_stack *node, t_stack *stack)
 {
 	int	cost;
@@ -21,17 +24,20 @@ int	ft_get_cost(t_stack *node, t_stack *stack)
 	cost = 0;
 	if (node->index <= (size / 2))
 	{
-		node->is_reverse = 0;
+		node->is_reverse = FALSE;
 		cost = node->index;
 	}
 	else
 	{
-		node->is_reverse = 1;
+		node->is_reverse = TRUE;
 		cost = size - node->index;
 	}
 	return (cost);
 }
 
+/**
+ * Calcule le nombre de coups totaux pour trier 'a' dans 'b'.
+ */
 int	ft_get_total_cost(t_stack *current, t_stack *a, t_stack *b)
 {
 	int		count_a;

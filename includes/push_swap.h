@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 22:18:18 by vbleskin          #+#    #+#             */
-/*   Updated: 2026/01/02 04:52:59 by vbleskin         ###   ########.fr       */
+/*   Updated: 2026/01/02 06:46:29 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int			ft_parsing(t_stack **stack_a, char **args);
 int			ft_check_duplicate(t_stack *stack_a);
 int			ft_check_args(char **args);
 // ERROR & FREE
-int			ft_error(void);
+int			ft_error(char *str);
 void		ft_free_stack(t_stack **stack);
 void		ft_free_split(char **args);
 // UTILS

@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 17:50:22 by vbleskin          #+#    #+#             */
-/*   Updated: 2026/01/02 04:41:46 by vbleskin         ###   ########.fr       */
+/*   Updated: 2026/01/02 06:48:26 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int ac, char **av)
 	if (ac < 2)
 		return (ERROR);
 	if (ft_init_stack(&stack_a, ac, av))
-		return (ft_error());
+		return (ft_error("init stack a push swap"));
 	ft_push_swap(&stack_a, &stack_b, PRINT_Y);
 	ft_free_stack(&stack_a);
 	return (SUCCESS);

@@ -6,15 +6,17 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 04:04:57 by vbleskin          #+#    #+#             */
-/*   Updated: 2026/01/02 04:42:05 by vbleskin         ###   ########.fr       */
+/*   Updated: 2026/01/02 06:47:28 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_error(void)
+int	ft_error(char *str)
 {
-	ft_putstr_fd("Error\n", STDERR_FILENO);
+	ft_putstr_fd("Error: ", STDERR_FILENO);
+	ft_putstr_fd(str, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 	return (ERROR);
 }
 

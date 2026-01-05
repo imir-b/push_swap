@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 03:11:42 by vbleskin          #+#    #+#             */
-/*   Updated: 2026/01/02 05:43:12 by vbleskin         ###   ########.fr       */
+/*   Updated: 2026/01/05 02:34:09 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,19 @@ int	ft_is_sorted(t_stack *stack)
 			break ;
 	}
 	return (TRUE);
+}
+
+/**
+ * Fonction qui verifie si 'str' est compose uniquement d'espace ' '.
+ */
+int	ft_is_only_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] == ' ')
+		i++;
+	if (!str[i])
+		return (TRUE);
+	return (FALSE);
 }

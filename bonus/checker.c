@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:05:46 by vlad              #+#    #+#             */
-/*   Updated: 2026/01/02 06:55:01 by vbleskin         ###   ########.fr       */
+/*   Updated: 2026/01/05 02:19:06 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_exec(char *line, t_stack **a, t_stack **b)
 		ft_free_stack(a);
 		ft_free_stack(b);
 		free(line);
-		ft_error("wtf checker died");
+		ft_error();
 		exit(ERROR);
 	}
 }
@@ -63,9 +63,9 @@ int	main(int ac, char **av)
 	stack_a = NULL;
 	stack_b = NULL;
 	if (ac < 2)
-		return (ft_error("checker needs more than 2 args"));
+		return (ft_error());
 	if (ft_init_stack(&stack_a, ac, av))
-		return (ft_error("init stack a checker"));
+		return (ft_error());
 	line = get_next_line(STDIN_FILENO);
 	while (line)
 	{

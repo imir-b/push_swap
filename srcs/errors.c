@@ -6,20 +6,24 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 04:04:57 by vbleskin          #+#    #+#             */
-/*   Updated: 2026/01/02 06:47:28 by vbleskin         ###   ########.fr       */
+/*   Updated: 2026/01/05 02:17:02 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_error(char *str)
+/**
+ * Ecrit 'Error\n' dans STDERR (2) et return 1 en code erreur.
+ */
+int	ft_error(void)
 {
-	ft_putstr_fd("Error: ", STDERR_FILENO);
-	ft_putstr_fd(str, STDERR_FILENO);
-	ft_putstr_fd("\n", STDERR_FILENO);
+	ft_putstr_fd("Error\n", STDERR_FILENO);
 	return (ERROR);
 }
 
+/**
+ * Free propremment 'stack'
+ */
 void	ft_free_stack(t_stack **stack)
 {
 	t_stack	*tmp;
@@ -39,6 +43,9 @@ void	ft_free_stack(t_stack **stack)
 	*stack = NULL;
 }
 
+/**
+ * Free propremment un tableau 'args'
+ */
 void	ft_free_split(char **args)
 {
 	int	i;

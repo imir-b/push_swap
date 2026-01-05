@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 13:27:39 by vbleskin          #+#    #+#             */
-/*   Updated: 2026/01/02 05:45:59 by vbleskin         ###   ########.fr       */
+/*   Updated: 2026/01/05 02:17:34 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	ft_align_stack(t_stack **a, int print)
 }
 
 /**
- * Fonction qui gere tout l'algo de trie.
+ * Fonction qui gere tout l'algo de tri.
  */
 void	ft_push_swap(t_stack **a, t_stack **b, int print)
 {

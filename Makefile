@@ -6,7 +6,7 @@
 #    By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/05 01:28:41 by vbleskin          #+#    #+#              #
-#    Updated: 2026/01/05 01:42:24 by vbleskin         ###   ########.fr        #
+#    Updated: 2026/01/17 01:03:00 by vbleskin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ LIBFT			=	$(LIBFT_DIR)/libft.a
 # ------------------------------------------------------------------------------
 
 CC				=	cc
-CFLAGS			=	-Wall -Werror -Wextra -I includes -I $(LIBFT_DIR)/includes -D BUFFER_SIZE=10
+CFLAGS			=	-Wall -Werror -Wextra -I includes -I $(LIBFT_DIR)/includes -D BUFFER_SIZE=10 -g3
 MAKEFLAGS       +=	--no-print-directory
 RM				=	rm -rf
 

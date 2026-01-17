@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 04:03:21 by vbleskin          #+#    #+#             */
-/*   Updated: 2026/01/05 02:33:31 by vbleskin         ###   ########.fr       */
+/*   Updated: 2026/01/17 01:21:21 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	ft_init_stack(t_stack **stack_a, int ac, char **av)
 			return (ft_free_stack(stack_a), ERROR);
 		args = ft_split(av[i], ' ');
 		if (!args)
-			return (1);
+			return (ERROR);
 		if (ft_parsing(stack_a, args))
 			return (ft_free_stack(stack_a), ft_free_split(args), ERROR);
 		ft_free_split(args);

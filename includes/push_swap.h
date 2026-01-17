@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 22:18:18 by vbleskin          #+#    #+#             */
-/*   Updated: 2026/01/05 02:37:56 by vbleskin         ###   ########.fr       */
+/*   Updated: 2026/01/16 23:03:28 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,4 +123,5 @@ void		ft_push_swap(t_stack **a, t_stack **b, int print);
 // -----------------------------------------------------------------------------
 
 //void		ft_put_stack(t_stack *stack, char c);
+
 #endif

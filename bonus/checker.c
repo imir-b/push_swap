@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:05:46 by vlad              #+#    #+#             */
-/*   Updated: 2026/01/05 02:19:06 by vbleskin         ###   ########.fr       */
+/*   Updated: 2026/01/19 05:28:35 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,13 @@ static int	ft_line_cmp(char *line, t_stack **a, t_stack **b)
 	return (SUCCESS);
 }
 
+#include <stdio.h>
+
 void	ft_exec(char *line, t_stack **a, t_stack **b)
 {
 	if (ft_line_cmp(line, a, b))
 	{
+		fprintf(stderr, "DEBUG: Ligne invalide reçue -> [%s]\n", line);
 		ft_free_stack(a);
 		ft_free_stack(b);
 		free(line);
@@ -62,6 +65,7 @@ int	main(int ac, char **av)
 
 	stack_a = NULL;
 	stack_b = NULL;
+	line = NULL;
 	if (ac < 2)
 		return (ft_error());
 	if (ft_init_stack(&stack_a, ac, av))

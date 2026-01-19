@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 02:05:20 by vbleskin          #+#    #+#             */
-/*   Updated: 2025/12/19 19:21:11 by vbleskin         ###   ########.fr       */
+/*   Updated: 2026/01/19 05:34:24 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ char	*ft_add_to_stash(int fd, char *stash, int *end)
 	free(buffer);
 	if (!readed)
 		return (*end = -1, NULL);
-	if (bytes < BUFFER_SIZE)
-		return (*end = 1, readed);
 	return (readed);
 }
 

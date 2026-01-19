@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 17:50:34 by vbleskin          #+#    #+#             */
-/*   Updated: 2026/01/02 05:34:34 by vbleskin         ###   ########.fr       */
+/*   Updated: 2026/01/17 01:29:31 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	ft_check_args(char **args)
 	while (args[i])
 	{
 		j = 0;
+		if (args[i][0] == '\0')
+            return (ERROR);
 		if ((args[i][j] == '-' || args[i][j] == '+') && \
 			!ft_isdigit((int)args[i][j + 1]))
 			return (ERROR);

@@ -6,7 +6,7 @@
 /*   By: vbleskin <vbleskin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:05:46 by vlad              #+#    #+#             */
-/*   Updated: 2026/01/19 05:39:27 by vbleskin         ###   ########.fr       */
+/*   Updated: 2026/01/19 05:40:35 by vbleskin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ static int	ft_line_cmp(char *line, t_stack **a, t_stack **b)
 		return (ERROR);
 	return (SUCCESS);
 }
-
-#include <stdio.h>
 
 void	ft_exec(char *line, t_stack **a, t_stack **b)
 {
